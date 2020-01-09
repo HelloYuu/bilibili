@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import request from '@/utils/request'
+import { login } from '@/api/user'
 export default {
   name: 'LoginPage',
   components: {},
@@ -23,8 +23,8 @@ export default {
   data () {
     return {
       user: {
-        mobile: '',
-        code: ''
+        mobile: '13911111111',
+        code: '246810'
       }
 
     }
@@ -35,13 +35,20 @@ export default {
   methods: {
     async onLogin () {
       const user = this.user
-
-      const res = await request({
-        method: 'POST',
-        url: ' /app/v1_0/authorizations',
-        data: user
+      this.$toast.loading({
+        duration: 0, // 持续展示 toast
+        message: '登陆中...',
+        forbidClick: true // 是否禁止背景点击
       })
-      console.log(res)
+
+      try {
+        const res = await login(user)
+        console.log('登陆成功', res)
+        this.$toast.success('登陆成功')
+      } catch (err) {
+        console.log('登陆失败', err)
+        this.$toast.fail('登陆失败')
+      }
     }
   }
 }
