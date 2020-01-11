@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import './utils/validation.js' // 表单验证
 import './utils/register-vant.js' // 注册 Vant 组件
 import 'amfe-flexible' // 配置 REM 适配
 
