@@ -20,3 +20,10 @@ export const getUserInfo = () => {
     url: '/app/v1_0/user'
   })
 }
+
+export const getUserId = UserId => {
+  return request({
+    method: 'GET',
+    url: `/app/v1_0/users/${UserId}`
+  })
+}
