@@ -64,6 +64,7 @@
         style="text-align: center;"
         title="退出登录"
         clickable
+        @click="onLogout"
       />
     </van-cell-group>
     <!-- /其它 -->
@@ -99,6 +100,16 @@ export default {
         console.log(err)
         this.$toast('获取用户数据失败')
       }
+    },
+    onLogout () {
+      this.$dialog.confirm({
+        title: '退出提示',
+        message: '确认退出？'
+      }).then(() => {
+        this.$store.commit('setUser', null)
+      }).catch(() => {
+        // on cancel
+      })
     }
   }
 }
